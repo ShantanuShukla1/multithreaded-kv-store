@@ -82,6 +82,8 @@ This project was validated with:
 - **Resizable hash table**: grow `num_buckets` dynamically as `size` approaches `num_buckets` to keep chain lengths short under heavy load
 
 ## Project structure
+
+```
 kv-store/
 ├── src/
 │   ├── kv_store.h    # Node, KVStore structs; public API declarations
@@ -91,3 +93,4 @@ kv-store/
 │   └── main.c        # demo + multithreaded stress test
 ├── Makefile
 └── README.md
+```
