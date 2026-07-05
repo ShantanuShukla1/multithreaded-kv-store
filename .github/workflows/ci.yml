@@ -1,0 +1,43 @@
+name: build-and-test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install valgrind
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Build main program
+        run: make
+
+      - name: Run demo
+        run: ./kvstore
+
+      - name: Build test suite
+        run: gcc -Wall -Wextra -g -pthread -o test_kv_store tests/test_kv_store.c src/kv_store.c src/lru_list.c
+
+      - name: Run test suite
+        run: ./test_kv_store
+
+      - name: Build and run with ThreadSanitizer
+        run: |
+          gcc -Wall -Wextra -g -pthread -fsanitize=thread -o test_kv_store_tsan tests/test_kv_store.c src/kv_store.c src/lru_list.c
+          ./test_kv_store_tsan
+
+      - name: Build and run with AddressSanitizer
+        run: |
+          gcc -Wall -Wextra -g -pthread -fsanitize=address -o test_kv_store_asan tests/test_kv_store.c src/kv_store.c src/lru_list.c
+          ./test_kv_store_asan
+
+      - name: Run under Valgrind
+        run: valgrind --leak-check=full --error-exitcode=1 ./test_kv_store

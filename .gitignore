@@ -2,3 +2,6 @@ kvstore
 kvstore_tsan
 kvstore_asan
 *.o
+test_kv_store
+test_kv_store_tsan
+test_kv_store_asan
