@@ -1,7 +1,4 @@
-cd ~/kv-store
-
 ![build](https://github.com/ShantanuShukla1/multithreaded-kv-store/actions/workflows/ci.yml/badge.svg)
-cat > README.md << 'EOF'
 # Multithreaded Key-Value Store
 
 A thread-safe, in-memory key-value store written in C, supporting concurrent access from multiple threads with LRU (Least Recently Used) eviction under a fixed memory capacity.
