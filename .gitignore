@@ -1,0 +1,4 @@
+kvstore
+kvstore_tsan
+kvstore_asan
+*.o
