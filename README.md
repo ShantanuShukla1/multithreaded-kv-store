@@ -1,4 +1,6 @@
 cd ~/kv-store
+
+![build](https://github.com/ShantanuShukla1/multithreaded-kv-store/actions/workflows/ci.yml/badge.svg)
 cat > README.md << 'EOF'
 # Multithreaded Key-Value Store
 
